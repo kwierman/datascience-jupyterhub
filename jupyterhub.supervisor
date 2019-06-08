@@ -1,0 +1,9 @@
+[program:jupyter]
+command = /srv/jupyterhub/env/bin/jupyterhub
+directory = /srv/jupyterhub
+user = root
+environment=PATH="/srv/jupyterhub/env/bin/:/srv/jupyterhub/node/bin/:/usr/bin/:/usr/local/bin/:/bin/"
+autostart = true
+autorestart = true
+stdout_logfile = /var/log/jupyter/out.log
+redirect_stderr = true

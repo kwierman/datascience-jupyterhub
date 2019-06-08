@@ -13,7 +13,7 @@ c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
 c.JupyterHub.allow_named_servers = True
 
 # Spawner Settings
-c.DockerSpawner.image = 'jupyterhub_datascience:latest'
+c.DockerSpawner.image = 'kwierman/jupyterhub_datascience:latest'
 c.DockerSpawner.hub_ip_connect = socket.gethostname()  # :8000
 c.Spawner.default_url = '/lab'
 c.Spawner.http_timeout = 120

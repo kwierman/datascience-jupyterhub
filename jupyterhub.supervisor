@@ -1,4 +1,4 @@
-[program:jupyter]
+[program:jupyterhub]
 command = /srv/jupyterhub/env/bin/jupyterhub
 directory = /srv/jupyterhub
 user = root

@@ -15,10 +15,10 @@ RUN apt-get update && apt-get -qq -y install curl bzip2 gcc \
 
 # Configure the jovyan user
 RUN useradd -m jovyan && chmod -R 777 /home/jovyan
-COPY . /tmp/
+COPY docker_setup.sh /tmp/
 USER jovyan
 WORKDIR /tmp/
-RUN bash docker_setup.sh && rm rf /tmp/*
+RUN bash docker_setup.sh
 
 # Setup the environment for the user
 ENV PATH /home/jovyan/.conda/envs/datascience/bin:/usr/local/condabin:/opt/conda/bin:/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

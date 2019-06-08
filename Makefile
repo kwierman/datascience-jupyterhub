@@ -1,7 +1,7 @@
 .PHONY: docker install
 
 docker:
-	docker build -t jupyterhub_datascience:latest .
+	docker build -t kwierman/jupyterhub_datascience:latest .
 
 clean:
 	rm -rf /srv/jupyterhub/
@@ -9,13 +9,14 @@ clean:
 install: clean docker
 	mkdir -p /srv/jupyterhub
 	cp jupyterhub_config.py /srv/jupyterhub/.
-	python3.7 -m venv /srv/jupyterhub/env/
+	python3 -m venv /srv/jupyterhub/env
 	source /srv/jupyterhub/env/bin/activate
-	pip install nodeenv jupyterhub notebook jupyterlab 
-	python3.7 -m nodeenv /srv/jupyterhub/node
+	pip install nodeenv jupyterhub notebook jupyterlab dockerspawner
+	python3 -m nodeenv /srv/jupyterhub/node
 	source /srv/jupyterhub/node/bin/activate
 	npm install -g configurable-http-proxy
 	cp jupyterhub.supervisor /etc/supervisor/conf.d/jupyterhub.conf
+	mkdir -p /var/log/jupyter/
 	supervisorctl reload
 	supervisorctl restart jupyterhub
 	cp jupyterhub.nginx /etc/nginx/sites-available/jupyterhub
